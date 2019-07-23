@@ -9,7 +9,7 @@ namespace SimpleExampleApiNetCore.Api.Repositories
         void Adicionar(FundoCapital fundo);
         void Alterar(FundoCapital fundo);
         IEnumerable<FundoCapital> ListarFundos();
-        FundoCapital ObterPorId(Guid id);
+        FundoCapital ObterPorId(int id);
         void RemoverFundo(FundoCapital capital);
     }    
 }

@@ -29,7 +29,7 @@ namespace SimpleExampleApiNetCore.Api.Controllers
         }
 
         [HttpPut("v1/fundoscapital/{id}")]
-        public IActionResult AlterarFundo(Guid id, [FromBody] FundoCapital fundo)
+        public IActionResult AlterarFundo(int id, [FromBody] FundoCapital fundo)
         {
             var fundoAntigo = _repositorio.ObterPorId(id);
 
@@ -47,7 +47,7 @@ namespace SimpleExampleApiNetCore.Api.Controllers
         }
 
         [HttpGet("v1/fundoscapital/{id}")]
-        public IActionResult ObterFundo(Guid id)
+        public IActionResult ObterFundo(int id)
         {
             var fundoAntigo = _repositorio.ObterPorId(id);
 
@@ -59,7 +59,7 @@ namespace SimpleExampleApiNetCore.Api.Controllers
         }
 
         [HttpDelete("v1/fundoscapital/{id}")]
-        public IActionResult RemoverFundo(Guid id)
+        public IActionResult RemoverFundo(int id)
         {
             var fundo = _repositorio.ObterPorId(id);
 

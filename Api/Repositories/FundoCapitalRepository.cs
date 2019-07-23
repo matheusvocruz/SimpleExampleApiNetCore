@@ -1,43 +1,46 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Api;
 using SimpleExampleApiNetCore.Api.Models;
 
 namespace SimpleExampleApiNetCore.Api.Repositories
 {
     public class FundoCapitalRepository : IFundoCapitalRepository
     {
-        private readonly List<FundoCapital> _storage;
+        private readonly DefaultContext _context;
 
-        public FundoCapitalRepository()
+        public FundoCapitalRepository(DefaultContext context)
         {
-            _storage = new List<FundoCapital>();
+            _context = context;
         }
 
         public void Adicionar(FundoCapital fundo)
         {
-            _storage.Add(fundo);
+            _context.FundoCapital.Add(fundo);
+            _context.SaveChanges();
         }
 
         public void Alterar(FundoCapital fundo)
         {
-            var index = _storage.FindIndex(0, 1, x => x.Id == fundo.Id);
-            _storage[index] = fundo;
+            _context.FundoCapital.Update(fundo);
+            _context.SaveChanges();
         }
 
         public IEnumerable<FundoCapital> ListarFundos()
         {
-            return _storage;
+            return _context.FundoCapital.ToList();
         }
 
-        public FundoCapital ObterPorId(Guid id)
+        public FundoCapital ObterPorId(int id)
         {
-            return _storage.FirstOrDefault(x => x.Id == id);
+            return _context.FundoCapital.FirstOrDefault(x => x.Id == id);
         }
 
         public void RemoverFundo(FundoCapital fundo)
         {
-            _storage.Remove(fundo);
+            _context.FundoCapital.Remove(fundo);
+            _context.SaveChanges();
         }
     }
 }
